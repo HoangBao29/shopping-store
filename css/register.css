@@ -1,0 +1,41 @@
+h1 {
+    text-align: center;
+}
+
+.wrapper-register {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.wrapper-register label{
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.wrapper-register input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(180, 175, 175);
+}
+
+.button {
+    background-color: black;
+    color: var(--primary-color);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--primary-color);
+    color: black;
+}
+
+.wrapper-register div {
+    text-align: center;
+    margin-top: 20px;
+}
