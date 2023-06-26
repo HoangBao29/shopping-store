@@ -70,7 +70,10 @@
 
 header {
     padding: 10px 0;
-    border-bottom: 1px solid rgb(168, 155, 155);
+    position: fixed;
+    z-index: 1000;
+    background-color: #ffffff;
+    width: 100%;
 }
 
 header .container nav ul {
@@ -82,6 +85,21 @@ header .container nav ul {
 nav ul li a {
     text-decoration: none;
     color: black;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+nav ul li a:hover {
+  color: rgb(240, 169, 180);
+  transition: all ease-in-out 0.2s;
+}
+
+nav ul:first-of-type li:first-of-type a {
+  color: rgb(240, 169, 180);
+}
+
+.logo-link {
+  max-width: 20%;
 }
 
 nav {
@@ -93,9 +111,7 @@ nav {
 /* footer style */
 
 footer {
-    margin-top: 50px;
     padding: 30px;
-    border-top: 1px solid rgb(158, 154, 154);
 }
 
 footer .container {
@@ -124,7 +140,8 @@ footer .container {
 /* main style */
 
 .main {
-    background-color: #e0d8d8;
+    background-color: #fdf9f9;
+    padding-top: 100px;
 }
 
 .hero {
@@ -144,8 +161,8 @@ footer .container {
 }
 
 .product__card{
-    background:  rgb(228, 212, 212);
-    box-shadow: 10px 10px #e0c4c4;
+    background:  rgb(246, 233, 233);
+    box-shadow: 10px 0 10px 0 #e9d2d2;
 }
 
 .product__card {
@@ -161,6 +178,7 @@ footer .container {
 .product .container h3{
     font-size: 30px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .product__card p{
@@ -177,6 +195,12 @@ footer .container {
     text-align: center;
 }
 
+.product__card:hover {
+    transform: scale(1.05);
+    transition: all ease-in-out 0.5s;
+    cursor: pointer;
+}
+
 .product__card div button {
     background-color: rgb(231, 148, 148);
     color: white;
@@ -188,6 +212,7 @@ footer .container {
 }
 
 .product__card div button:hover{
-    background-color: #dbb7b7;
-    color: black;
+    background-color: #eed7d7;
+    color: rgb(242, 88, 88);
+    transition: all ease-in-out 0.3s;
 }
