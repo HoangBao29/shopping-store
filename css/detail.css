@@ -1,0 +1,86 @@
+.main .container .product {
+    display: flex;
+    gap: 80px;
+    margin-top: 40px;
+}
+
+.main {
+    padding-bottom: 40px;
+}
+
+.product__content h1 {
+    margin-bottom: 10px;
+}
+
+.product__content span:first-of-type {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.product__content span:nth-of-type(2){
+    color: red;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.product__content button{
+    color: white;
+    background-color: black;
+    padding: 15px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: block;
+    cursor: pointer;
+}
+
+.product__content button:hover{
+    background-color: white;
+    color: black;
+    transition: all ease-in-out 0.2s;
+}
+
+.product__content p:first-of-type{
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.card {
+    padding-bottom: 30px;
+    background-color: rgb(252, 232, 236);
+    cursor: pointer;
+    box-shadow: 10px 10px rgb(250, 218, 223);
+}
+
+.card:hover {
+    transform: scale(1.03);
+    transition: all ease-in-out 0.2s;
+}
+
+.main h2 {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 40px;
+}
+
+.card p:first-of-type{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.card p:last-of-type{
+    font-weight: 600;
+    color: red;
+}
+
+.wrapper-card {
+    display: flex;
+    gap: 30px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+

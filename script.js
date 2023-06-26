@@ -8,6 +8,7 @@ const handleSubmit = () => {
 
 // fake data
 
+
 const data = [
     {
         id: 1,
@@ -73,6 +74,8 @@ const data = [
 
 // render data
 
+
+
 var elementCard = document.querySelector(".wrapper-product");
 const renderData = data.map((item)=>{
     return `<div onclick="handlePagination()" class="product__card">
@@ -89,4 +92,5 @@ elementCard.innerHTML = renderData.join(" ");
 const handlePagination = () => {
     window.location.href = "detail.html";
 }
+
 
