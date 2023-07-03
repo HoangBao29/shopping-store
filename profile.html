@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/login.css">
-    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="./css/register.css">
+    <title>Trang cá nhân</title>
 </head>
 <body>
     <header>
@@ -20,7 +20,7 @@
                 </ul>
                 <a class="logo-link" href="index.html"><img class="logo" src="./images/logo.png" alt="logo">
                 </a>
-                <ul>
+                <ul id="account">
                     <li><a href="login.html">Đăng nhập</a></li>
                     <span>/</span>
                     <li><a href="register.html">Đăng ký</a></li>
@@ -30,13 +30,21 @@
     </header>
     <div class="main">
         <div class="wrapper-register">
-            <h1>Đăng nhập</h1>
+            <h1>Trang cá nhân</h1>
             <form onsubmit="submitForm(event)">
+                <label>Họ Và Tên:</label>
+                <input id="inputId" type="name">
                 <label>Email:</label>
-                <input id="email" type="email" placeholder="Nhập email của bạn...">
+                <input id="email" type="email" readonly>
                 <label>Mật Khẩu:</label>
-                <input id="password" type="password" placeholder="Nhập mật khẩu của bạn...">
-                <input onchange="handleSubmit(e)"  class="button"  type="submit" value="Submit">
+                <input id="password" type="password">
+                <label>Nhập lại mật khẩu:</label>
+                <input id="retype" type="password">
+                <label>Số điện thoại:</label>
+                <input id="phone" type="tel">
+                <label>Địa Chỉ:</label>
+                <input id="address" type="address">
+                <input onchange="handleSubmit(e)"  class="button"  type="submit" value="Cập nhật">
             </form>
         </div>
     </div>
@@ -76,5 +84,5 @@
         </div>
     </footer>
 </body>
-<script src="./javascript/login.js"></script>
+<script src="./javascript/profile.js"></script>
 </html>

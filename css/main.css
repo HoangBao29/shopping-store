@@ -216,3 +216,13 @@ footer .container {
     color: rgb(242, 88, 88);
     transition: all ease-in-out 0.3s;
 }
+
+.main .cart {
+  position: fixed;
+  z-index: 1000;
+  bottom: 100px;
+  right: 100px;
+  position: fixed;
+  z-index: 1000;
+  cursor: pointer;
+}
