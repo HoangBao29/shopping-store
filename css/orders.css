@@ -1,0 +1,21 @@
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.wrapper-table table {
+    width: 100%;
+    text-align: center;
+    border: 1px solid rgb(163, 161, 161);
+}
+
+.table tr:first-of-type th:first-of-type{
+    width: 5%;
+}
+
+.wrapper-table th, td {
+    border: 1px solid rgb(163, 161, 161);
+}
+

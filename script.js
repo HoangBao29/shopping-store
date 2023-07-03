@@ -1,13 +1,4 @@
-var handleName = (e) => {
-    return e
-}
-
-const handleSubmit = () => {
-    alert("Bạn đã đăng ký thành công!")
-}
-
 // fake data
-
 
 const data = [
     {
@@ -78,19 +69,77 @@ const data = [
 
 var elementCard = document.querySelector(".wrapper-product");
 const renderData = data.map((item)=>{
-    return `<div onclick="handlePagination()" class="product__card">
-    <img src=${item.image} alt="item">
+    return `<div class="product__card">
+    <img onclick="handlePagination(${item.id})" src=${item.image} alt="item">
     <p>${item.name}</p>
     <p>${item.price}</p>
     <div>
-        <button>Mua ngay</button>
+        <button onclick="handleOrder(${item.id})">Mua ngay</button>
     </div>
 </div>`
 })
 elementCard.innerHTML = renderData.join(" ");
 
-const handlePagination = () => {
-    window.location.href = "detail.html";
+const handlePagination = (id) => {
+    // window.location.href = `detail.html?index=${id}`;
 }
 
+// get data from input
 
+var loginActive = localStorage.getItem("login");
+console.log(loginActive);
+
+var renderLogin = document.getElementById("account")
+console.log(renderLogin);
+if(loginActive !== null) {
+    renderLogin.innerHTML=`<ul id="account">
+    <li><a href="profile.html">Trang cá nhân</a></li>
+    <span>/</span>
+    <li><a onclick="handleLogout()">Đăng xuất</a></li>
+</ul>`
+}
+
+// function logout
+
+const handleLogout = () => {
+    localStorage.removeItem('login');
+    window.location.href = "index.html";
+}
+
+console.log(loginActive);
+
+const handleOrder = (id) => {
+    if(loginActive === null) {
+        alert("Xin vui lòng đăng nhập để mua hàng!")
+        window.location.href="login.html"
+    }
+    else {
+        const item = data.find((value)=>{
+            return value.id === id
+        })
+        console.log("=======item", item);
+        item.quality = 1;
+        var product = JSON.parse(localStorage.getItem("product"))
+        // // console.log(product)
+        if(product === null){
+            localStorage.setItem('product', JSON.stringify([item]))
+        }
+        else{
+            const checkQuality = product.find((value)=>{
+                return value.id === item.id
+            })
+            console.log("checkQuality", checkQuality);
+            if (checkQuality) {
+                checkQuality.quality += 1;
+            }
+            else{
+                product.push(item)
+            }
+            localStorage.setItem('product', JSON.stringify(product))
+        }
+    
+    }
+    // kiem tra co product, bang  cach la get Item
+    //  => null => push len cai [{}]
+    // ko null thi convert tk lay ve => push len cai mang
+}
