@@ -72,7 +72,7 @@ const renderData = data.map((item)=>{
     return `<div class="product__card">
     <img onclick="handlePagination(${item.id})" src=${item.image} alt="item">
     <p>${item.name}</p>
-    <p>${item.price}</p>
+    <p>${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
     <div>
         <button onclick="handleOrder(${item.id})">Mua ngay</button>
     </div>
@@ -87,13 +87,19 @@ const handlePagination = (id) => {
 // get data from input
 
 var loginActive = localStorage.getItem("login");
+if (!loginActive) {
+    var cartRender = document.querySelector(".cart");
+    cartRender.remove();
+    console.log(cartRender);
+}
 console.log(loginActive);
 
 var renderLogin = document.getElementById("account")
 console.log(renderLogin);
 if(loginActive !== null) {
+    var dataLogin = JSON.parse(loginActive)
     renderLogin.innerHTML=`<ul id="account">
-    <li><a href="profile.html">Trang cá nhân</a></li>
+    <li><a href="profile.html">${dataLogin.name}</a></li>
     <span>/</span>
     <li><a onclick="handleLogout()">Đăng xuất</a></li>
 </ul>`
@@ -108,38 +114,93 @@ const handleLogout = () => {
 
 console.log(loginActive);
 
+const handleGetItem = () => {
+    var renderItem = document.querySelector(".item-card");
+    var checkProduct = JSON.parse(localStorage.getItem('product'));
+    if(checkProduct === null){
+        renderItem.innerText = 0;
+    }
+    else {
+        const filterUser = checkProduct.find((item)=>{
+            return item.email === JSON.parse(loginActive).email
+        })
+        if(!filterUser){
+            renderItem.innerText = `0`
+        }
+        else {
+            const qty = filterUser.dataOrders.reduce((acc,cur)=>{
+                return acc + cur.quality
+            },0)
+            renderItem.innerText = `${qty}`
+        }
+    }
+}
+
+handleGetItem();
+
+
 const handleOrder = (id) => {
     if(loginActive === null) {
         alert("Xin vui lòng đăng nhập để mua hàng!")
         window.location.href="login.html"
     }
     else {
+        var dataUserOrder = JSON.parse(loginActive);
         const item = data.find((value)=>{
             return value.id === id
         })
         console.log("=======item", item);
         item.quality = 1;
+        // item.userEmail = dataUserOrder.email;
         var product = JSON.parse(localStorage.getItem("product"))
+        console.log(item);
         // // console.log(product)
         if(product === null){
-            localStorage.setItem('product', JSON.stringify([item]))
+            localStorage.setItem('product', JSON.stringify([{
+                email: dataUserOrder.email,
+                dataOrders: [
+                    item
+                ]
+            }]))
         }
         else{
-            const checkQuality = product.find((value)=>{
-                return value.id === item.id
+            console.log(product);
+            const checkUser = product.find((user)=>{
+                return user.email === dataUserOrder.email
             })
-            console.log("checkQuality", checkQuality);
-            if (checkQuality) {
-                checkQuality.quality += 1;
+            if (checkUser) {
+                const checkItem = checkUser.dataOrders.find((item)=>{
+                    return item.id === id;
+                })
+                console.log(checkItem);
+                if(checkItem){
+                    checkItem.quality += 1;
+                }
+                else{
+                    product.find((value)=>{
+                        if(value.email === dataUserOrder.email){
+                            value.dataOrders.push(item)
+                        }
+                    })
+                }
             }
             else{
-                product.push(item)
+                item.email = dataUserOrder.email;
+
+                product.push({
+                    email: dataUserOrder.email,
+                    dataOrders: [
+                        item
+                    ]
+                })
             }
             localStorage.setItem('product', JSON.stringify(product))
         }
-    
+        handleGetItem();
     }
     // kiem tra co product, bang  cach la get Item
     //  => null => push len cai [{}]
     // ko null thi convert tk lay ve => push len cai mang
 }
+
+

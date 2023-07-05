@@ -8,7 +8,7 @@ h2 {
 .wrapper-table table {
     width: 100%;
     text-align: center;
-    border: 1px solid rgb(163, 161, 161);
+    border: 1px solid rgb(211, 205, 205);
 }
 
 .table tr:first-of-type th:first-of-type{
@@ -19,3 +19,19 @@ h2 {
     border: 1px solid rgb(163, 161, 161);
 }
 
+.table tr td {
+    background-color: white;
+    font-size: 24px;
+}
+
+
+.table tr:first-of-type th {
+    padding: 10px;
+    text-transform: uppercase;
+    color: rgb(13, 13, 13);
+    background-color: rgb(254, 254, 254);
+}
+
+.wrapper-table {
+    padding-bottom: 40px;
+}
